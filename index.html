@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holda | The Smart Alzheimer's Care Companion</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #0F766E;   /* Deep Teal - Trust & Health */
+            --accent: #F97316;    /* Warm Orange - Energy & Care */
+            --bg-soft: #F0FDFA;   /* Very Light Teal Background */
+            --text-dark: #1E293B; /* Dark Blue-Grey */
+            --text-gray: #475569;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--white); }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-center { text-align: center; }
+        .btn { display: inline-block; padding: 12px 30px; border-radius: 50px; font-weight: 600; cursor: pointer; }
+        .btn-primary { background-color: var(--primary); color: var(--white); }
+        .btn-primary:hover { background-color: #0d615b; transform: translateY(-2px); }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+        .btn-outline:hover { background: var(--primary); color: var(--white); }
+
+        /* --- HEADER --- */
+        header { padding: 20px 0; position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(5px); z-index: 100; box-shadow: 0 1px 10px rgba(0,0,0,0.05); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-gray); font-weight: 500; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- HERO SECTION --- */
+        .hero { padding: 100px 0 80px; background: linear-gradient(180deg, var(--bg-soft) 0%, #fff 100%); text-align: center; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: var(--text-dark); }
+        .hero span { color: var(--primary); }
+        .hero p { font-size: 1.25rem; color: var(--text-gray); max-width: 700px; margin: 0 auto 40px; }
+        .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 50px; opacity: 0.8; }
+        .stat-item { font-size: 0.9rem; font-weight: 600; color: var(--text-gray); }
+
+        /* --- PAIN POINTS (The Problem) --- */
+        .problem-section { padding: 80px 0; background: #fff; }
+        .section-title { font-size: 2.2rem; margin-bottom: 15px; text-align: center; }
+        .section-subtitle { text-align: center; color: var(--text-gray); margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { padding: 30px; border-radius: 16px; background: var(--bg-soft); border: 1px solid #e2e8f0; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+        .card-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .card h3 { margin-bottom: 10px; font-size: 1.25rem; }
+        .card p { color: var(--text-gray); font-size: 0.95rem; }
+
+        /* --- SOLUTION (Features) --- */
+        .solution-section { padding: 80px 0; background: var(--text-dark); color: white; }
+        .solution-section .section-subtitle { color: #94a3b8; }
+        
+        .feature-row { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; }
+        .feature-row:nth-child(even) { flex-direction: row-reverse; }
+        .feature-content { flex: 1; }
+        .feature-image { flex: 1; background: rgba(255,255,255,0.1); height: 300px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+        
+        .tag { background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: inline-block; }
+        .feature-content h3 { font-size: 2rem; margin-bottom: 20px; }
+        .feature-content ul li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; opacity: 0.9; }
+
+        /* --- COMPARISON --- */
+        .comparison-section { padding: 80px 0; background: #fff; }
+        .table-wrapper { overflow-x: auto; margin-top: 40px; }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { padding: 20px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        th { background: var(--bg-soft); color: var(--primary); }
+        .check { color: var(--primary); font-weight: bold; }
+        .cross { color: #ef4444; opacity: 0.5; }
+
+        /* --- CTA --- */
+        .cta-section { padding: 100px 0; background: var(--primary); color: white; text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .cta-section p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; }
+        .btn-white { background: white; color: var(--primary); }
+        .btn-white:hover { background: #f0f0f0; }
+
+        /* --- FOOTER --- */
+        footer { background: #0f172a; color: #94a3b8; padding: 50px 0; font-size: 0.9rem; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .feature-row { flex-direction: column !important; gap: 30px; text-align: center; }
+            .feature-content ul li { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">📱 Holda</a>
+                <div class="nav-links">
+                    <a href="#problem">The Problem</a>
+                    <a href="#solution">Features</a>
+                    <a href="#pricing">Pricing</a>
+                </div>
+                <a href="#" class="btn btn-primary">Download App</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Your Compassionate <br><span>AI Care Companion</span></h1>
+            <p>Holda is a smart assistant designed for Alzheimer's caregivers. We help you provide better care for your loved ones while protecting your own mental health.</p>
+            <div>
+                <a href="#" class="btn btn-primary">Start Free Trial</a>
+                <a href="#solution" class="btn btn-outline" style="margin-left: 10px;">How it Works</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">✅ Validated by Experts</div>
+                <div class="stat-item">❤️ Trusted by Families</div>
+                <div class="stat-item">🔒 Private & Secure</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problem" class="problem-section">
+        <div class="container">
+            <h2 class="section-title">Caregiving is Hard. You Are Not Alone.</h2>
+            <p class="section-subtitle">Most caregivers receive no formal training, leading to burnout and confusion.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-icon">❓</span>
+                    <h3>Lack of Knowledge</h3>
+                    <p>Unsure how to manage aggression? Don't know when to call a doctor? Internet searches are often unreliable and scattered.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">😓</span>
+                    <h3>Caregiver Burnout</h3>
+                    <p>Chronic stress, sleep deprivation, and guilt are real. 70% of caregivers suffer from health issues due to exhaustion.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🚫</span>
+                    <h3>No Instant Support</h3>
+                    <p>Professional counseling is expensive, and friends don't always understand. You need answers at 2 AM, not just during office hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution" class="solution-section">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 60px;">
+                <h2 class="section-title">Meet Holda</h2>
+                <p class="section-subtitle">A 24/7 Smart Assistant that teaches you to be a better caregiver.</p>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-content">
+                    <span class="tag">RAG + LLM Technology</span>
+                    <h3>24/7 Smart AI Chatbot</h3>
+                    <p>Get instant answers to your specific questions, anytime, day or night.</p>
+                    <ul>
+                        <li>✅ Answers validated by scientific sources</li>
+                        <li>✅ Personalized to your patient's condition</li>
+                        <li>✅ Emotional support and empathy</li>
+                    </ul>
+                </div>
+                <div class="feature-image">🤖</div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-content">
+                    <span class="tag">Education</span>
+                    <h3>Structured Learning</h3>
+                    <p>Don't just guess—learn. Access bite-sized videos and structured courses designed for busy caregivers.</p>
+                    <ul>
+                        <li>✅ 30-Day "Novice Caregiver" Course</li>
+                        <li>✅ Daily 2-minute tips</li>
+                        <li>✅ Guides on safety, nutrition, and behavior</li>
+                    </ul>
+                </div>
+                <div class="feature-image">📚</div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-content">
+                    <span class="tag">Community</span>
+                    <h3>The Power of "Us"</h3>
+                    <p>Connect with others who walk the same path. Share stories, reduce isolation, and find hope.</p>
+                    <ul>
+                        <li>✅ Read real stories from other caregivers</li>
+                        <li>✅ Peer support environment</li>
+                        <li>✅ Inspiration and daily motivation</li>
+                    </ul>
+                </div>
+                <div class="feature-image">🤝</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">Why Holda?</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Holda App</th>
+                            <th>Google Search</th>
+                            <th>WhatsApp Groups</th>
+                            <th>In-Person Therapy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Reliability</strong></td>
+                            <td><span class="check">Verified Experts</span></td>
+                            <td><span class="cross">Scattered/Unsure</span></td>
+                            <td><span class="cross">Unprofessional</span></td>
+                            <td><span class="check">High</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Availability</strong></td>
+                            <td><span class="check">24/7 Instant</span></td>
+                            <td><span class="check">24/7</span></td>
+                            <td><span class="cross">Random</span></td>
+                            <td><span class="cross">Appointment Only</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Structure</strong></td>
+                            <td><span class="check">Step-by-Step</span></td>
+                            <td><span class="cross">Messy</span></td>
+                            <td><span class="cross">Chaotic</span></td>
+                            <td><span class="check">Structured</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost</strong></td>
+                            <td><span class="check">Affordable</span></td>
+                            <td><span class="check">Free</span></td>
+                            <td><span class="check">Free</span></td>
+                            <td><span class="cross">Expensive</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start Your Journey Today</h2>
+            <p>Join the community of caregivers finding peace and confidence.</p>
+            <a href="#" class="btn btn-white btn-lg">Download Holda Now</a>
+            <p style="margin-top: 20px; font-size: 0.9rem;">Available on Android & iOS</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Holda</div>
+                <div>
+                    <a href="#" style="color: #94a3b8; margin: 0 10px;">Privacy Policy</a>
+                    <a href="#" style="color: #94a3b8; margin: 0 10px;">Terms of Service</a>
+                </div>
+            </div>
+            <div class="text-center">
+                &copy; 2026 Holda. Designed for Caregivers.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
