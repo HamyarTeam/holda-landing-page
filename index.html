@@ -80,6 +80,20 @@
         .check { color: var(--primary); font-weight: bold; }
         .cross { color: #ef4444; opacity: 0.5; }
 
+        /* --- PRICING SECTION --- */
+        .pricing-section { padding: 80px 0; background: var(--bg-soft); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 900px; margin: 0 auto; }
+        .pricing-card { background: white; padding: 40px; border-radius: 20px; border: 1px solid #e2e8f0; position: relative; display: flex; flex-direction: column; }
+        .pricing-card.featured { border: 2px solid var(--primary); box-shadow: 0 10px 30px rgba(15, 118, 110, 0.15); transform: scale(1.02); z-index: 10; }
+        .pricing-header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #f1f5f9; padding-bottom: 20px; }
+        .pricing-title { font-size: 1.5rem; font-weight: bold; color: var(--text-dark); margin-bottom: 10px; }
+        .price { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        .price span { font-size: 1rem; color: var(--text-gray); font-weight: normal; }
+        
+        .pricing-features { margin-bottom: 30px; flex-grow: 1; }
+        .pricing-features li { margin-bottom: 15px; color: var(--text-gray); display: flex; align-items: flex-start; gap: 10px; }
+        .pricing-features li::before { content: "✓"; color: var(--primary); font-weight: bold; }
+
         /* --- CTA --- */
         .cta-section { padding: 100px 0; background: var(--primary); color: white; text-align: center; }
         .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
@@ -97,6 +111,7 @@
             .nav-links { display: none; }
             .feature-row { flex-direction: column !important; gap: 30px; text-align: center; }
             .feature-content ul li { justify-content: center; }
+            .pricing-card.featured { transform: scale(1); }
         }
     </style>
 </head>
@@ -254,6 +269,43 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Simple Pricing</h2>
+            <p class="section-subtitle">Choose the plan that fits your caregiving journey.</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-title">Free</div>
+                        <div class="price">Free<span> / forever</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Evaluated RAG engine</li>
+                        <li>Limited number of tokens</li>
+                        <li>Access to all scraped websites’ data</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="width: 100%;">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <div class="pricing-title">Paid</div>
+                        <div class="price">Premium<span> / month</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Evaluated agentic RAG engine</li>
+                        <li>More tokens to use + memory</li>
+                        <li>Search the web feature</li>
+                        <li>TTS and STT features</li>
+                        <li>Multimodal feature</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Upgrade Now</a>
+                </div>
             </div>
         </div>
     </section>
